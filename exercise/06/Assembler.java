@@ -51,7 +51,7 @@ public class Assembler {
         Scanner scan = new Scanner(codes);
         String line = "";
         int pc = 0;
-        Pattern p = Pattern.compile("^\\([^0-9][0-9A-Za-z\\_\\:\\.\\$]+\\)$");//start with ( and end with ) and consist of uppercase
+        Pattern p = Pattern.compile("^\\([^0-9][0-9A-Za-z\\_\\:\\.\\$]+\\)$");
         Matcher m =null;
 
         while (scan.hasNextLine()){
