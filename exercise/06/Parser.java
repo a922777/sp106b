@@ -63,7 +63,7 @@ public class Parser {
     }
 
     /**
-     * 加０在string的左邊,直到符合長度
+     *補０
      * @param strIn
      * @param len
      * @return
