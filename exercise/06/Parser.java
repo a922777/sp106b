@@ -3,7 +3,7 @@ import java.io.File;
 public class Parser {
 
     /**
-     * 刪除(String 後面的 "//")
+     * 刪除註解//
      * @param strIn
      * @return
      */
@@ -21,7 +21,7 @@ public class Parser {
     }
 
     /**
-     * 刪除空白 String
+     * 刪除空白
      * @param strIn
      * @return
      */
