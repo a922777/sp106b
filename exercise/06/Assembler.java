@@ -24,7 +24,7 @@ public class Assembler {
         cMap.put("R11",11);cMap.put("R12",12);cMap.put("R13",13);cMap.put("R14",14);
         cMap.put("R15",15);cMap.put("SCREEN",16384);cMap.put("KBD",24576);
 
-        //ctable
+        //comptable
         compAMap.put("0","101010");compAMap.put("1","111111");compAMap.put("-1","111010");
         compAMap.put("D","001100");compAMap.put("A","110000");compAMap.put("!D","001101");
         compAMap.put("!A","110001");compAMap.put("-D","001111");compAMap.put("-A","110011");
@@ -36,11 +36,11 @@ public class Assembler {
         compMMap.put("D-M","010011");compMMap.put("M-D","000111");compMMap.put("D&M","000000");
         compMMap.put("D|M","010101");
 
-        //dtable
+        //desttable
         dstMap.put("","000");dstMap.put("M","001");dstMap.put("D","010");dstMap.put("MD","011");
         dstMap.put("A","100");dstMap.put("AM","101");dstMap.put("AD","110");dstMap.put("AMD","111");
 
-        //jtable
+        //jumptable
         jmpMap.put("","000");jmpMap.put("JGT","001");jmpMap.put("JEQ","010");jmpMap.put("JGE","011");
         jmpMap.put("JLT","100");jmpMap.put("JNE","101");jmpMap.put("JLE","110");jmpMap.put("JMP","111");
     }
