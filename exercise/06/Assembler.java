@@ -252,7 +252,7 @@ public class Assembler {
     }
 
     /**
-     * 將.asm存檔為.hack
+     * 將.asmt輸出為.hack
      * @param dir
      */
     public static void translation(String dir){
