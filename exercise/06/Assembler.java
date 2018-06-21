@@ -60,10 +60,9 @@ public class Assembler {
 
             m = p.matcher(line);
 
-            //if find, it is a L instruction
+            //Ｌ指令
             if (m.find()){
 
-                //get rid of ( and )
                 labels.put(m.group().substring(1,m.group().length()-1), pc);
 
             }else {
@@ -101,12 +100,10 @@ public class Assembler {
 
 
         Pattern p = Pattern.compile("^[^0-9][0-9A-Za-z\\_\\:\\.\\$]+");
-        // A user-defined symbol can be any sequence of letters, digits, underscore (_),
-        //dot (.), dollar sign ($), and colon (:) that does not begin with a digit.
+        Pattern p = Pattern.compile("^[^0-9][0-9A-Za-z\\_\\:\\.\\$]+");
+        //dot (.), dollar sign ($), and colon (:) 不是數字開頭的
 
         Pattern pL = Pattern.compile("^\\([^0-9][0-9A-Za-z\\_\\:\\.\\$]+\\)$");
-        //start with ( and end with ) and consist of uppercase
-        //for L instruction
 
         HashMap<String,Integer> labels = findLabels(codes);
 
@@ -119,24 +116,24 @@ public class Assembler {
             line = scan.nextLine();
 
             if (line.charAt(0) == '@'){
-                //A instructions
+                //Ａ指令
 
                 varName = line.substring(1);
 
-                //if this is jump address for next instruction
+              
                 if (labels.containsKey(varName)){
 
                     value = Parser.padLeftZero(Integer.toBinaryString(labels.get(varName)),15);
 
                 }else {
 
-                    //varName is a value
+                
                     if (varName.matches("[0-9]+")) {
 
                         value = Parser.padLeftZero(Integer.toBinaryString(Integer.parseInt(varName)), 15);
 
                     } else {
-                        //varName is an user-defined symbol
+                       
 
                         if (cMap.containsKey(varName)){
 
@@ -147,7 +144,7 @@ public class Assembler {
 
                             if (p.matcher(varName).find()) {
 
-                                //if map contains this key then get its value and translate into binary
+                                //轉二進位
                                 if (symbols.containsKey(varName)) {
 
                                     temp = symbols.get(varName);
@@ -155,10 +152,10 @@ public class Assembler {
                                     value = Parser.padLeftZero(Integer.toBinaryString(temp), 15);
 
                                 } else {
-                                    //if not put it into map and its value is startAddress + map.size()
+                                   
                                     addressDec = symbols.size() + startAddress;
 
-                                    //if use too much memory, give "out of memory" exception
+                                    
                                     if (addressDec >= 16384) {
 
                                         throw new IllegalStateException("Out of memory!Too many user defined symbols! Line " + lineNumber);
@@ -187,12 +184,11 @@ public class Assembler {
 
             }else if (pL.matcher(line).find()) {
 
-                //if it is a L instruction just negelect it
+                //忽略Ｌ指令
                 continue;
 
             }else {
-                //check whether this instruction is a C instructions
-                //if it is not throw an exception
+                //檢查是否為Ｃ指令
 
                 flag1 = line.indexOf("=");
                 flag2 = line.indexOf(";");
@@ -248,27 +244,22 @@ public class Assembler {
 
                 }
 
-
-                //System.out.println(dst + " " + comp + " " + jmp);
-
-
             }
 
         }
-        //System.out.println(instructions);
 
         return instructions;
     }
 
     /**
-     * translate .asm file to .hack file
+     * 將.asm存檔為.hack
      * @param dir
      */
     public static void translation(String dir){
 
         File fIn = new File(dir);
 
-        //if input file is not an .asm file, throw an exception and stop translation
+        //如果不是.asm停止動作
         if (!Parser.isAsm(fIn)){
             throw new IllegalArgumentException("Wrong file format! Only .asm is accepted!");
         }
@@ -288,11 +279,8 @@ public class Assembler {
                 }
 
             }
-
-            //get rid of last "\n"
             preprocessed = preprocessed.trim();
 
-            //System.out.println(preprocessed);
             String result = asmToHack(preprocessed);
 
             String fileName = fIn.getName().substring(0,fIn.getName().indexOf("."));
