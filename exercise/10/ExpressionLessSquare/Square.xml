@@ -110,7 +110,7 @@
           <expressionList>
             <expression>
               <term>
-                <keyword> this </keyword>
+                <identifier> x </identifier>
               </term>
             </expression>
           </expressionList>

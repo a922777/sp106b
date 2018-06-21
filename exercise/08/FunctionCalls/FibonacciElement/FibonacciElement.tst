@@ -3,8 +3,7 @@
 // by Nisan and Schocken, MIT Press.
 // File name: projects/08/FunctionCalls/FibonacciElement/FibonacciElement.tst
 
-// FibonacciElement.asm results from translating both Main.vm and Sys.vm into
-// a single assembly program, stored in the file FibonacciElement.asm.
+// FibonacciElement.asm is the result of translating both Main.vm and Sys.vm.
 
 load FibonacciElement.asm,
 output-file FibonacciElement.out,
