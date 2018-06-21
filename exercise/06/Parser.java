@@ -3,7 +3,7 @@ import java.io.File;
 public class Parser {
 
     /**
-     * Delete comments(String after "//") from a String
+     * 刪除(String 後面的 "//")
      * @param strIn
      * @return
      */
@@ -21,7 +21,7 @@ public class Parser {
     }
 
     /**
-     * Delete spaces from a String
+     * 刪除空白 String
      * @param strIn
      * @return
      */
@@ -41,7 +41,7 @@ public class Parser {
     }
 
     /**
-     * return whether a file is an .asm file
+     * 回傳到.asm的資料夾
      * @param fileIn
      * @return
      */
@@ -63,7 +63,7 @@ public class Parser {
     }
 
     /**
-     * pad 0 to the input string on the left until the length is equal to the input length
+     * 加０在string的左邊,直到符合長度
      * @param strIn
      * @param len
      * @return
