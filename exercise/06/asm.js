@@ -88,7 +88,7 @@ function parser()
     var readword = word + ".asm";
     data=fs.readFileSync(readword);
     data=data.toString();
-	var writeword=word +'.hack';
+    var writeword=word +'.hack';
     fs.createWriteStream(writeword);
     fs.writeFileSync(writeword,'');
     var lines=data.split(/\r?\n/);//分割
