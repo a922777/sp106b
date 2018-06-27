@@ -125,8 +125,8 @@ function pass1(line)
         if(line.match(/^\d+$/))
         {   var line=line.split('@');
             line=line - 0; //line轉數字
-            var answer10 = add0(line); //補0
-            c.log(answer10);
+            var answer2 = add0(line); //補0
+            c.log(answer2);
         }
         else
         {
@@ -136,8 +136,8 @@ function pass1(line)
                 symnum++;
             }
             var num=symTable[line];
-            answer10=add0(num);//補0
-            c.log(answer10);
+            answer2=add0(num);//補0
+            c.log(answer2);
         }
     }
     else  //C指令
