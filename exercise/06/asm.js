@@ -85,13 +85,13 @@ var word=process.argv[2];
 parser();
 function parser()
 {
-    var writeword=word +'.hack';
-    fs.createWriteStream(writeword);
-    fs.writeFileSync(writeword,'');
     var readword = word + ".asm";
     data=fs.readFileSync(readword);
     data=data.toString();
-    var lines=data.split(/\r?\n/);
+	var writeword=word +'.hack';
+    fs.createWriteStream(writeword);
+    fs.writeFileSync(writeword,'');
+    var lines=data.split(/\r?\n/);//分割
     for(line of lines)
     {
         line.match(/^([^\/]*)(\/.*)?$/)
@@ -99,18 +99,12 @@ function parser()
         if(line.length!=0)
         {
         pass1(line);
+		pass2(line);
         }
-    }
-    for(line of lines)
-    {
-        line.match(/^([^\/]*)(\/.*)?$/)
-        line = RegExp.$1.trim();
-        if(line.length!=0)
-        pass2(line);
     }
 }
 
-function zero(line) //補0用的
+function add0(line)
 {
     line= line.toString(2); //轉2進位
     var len=line.length;
@@ -120,18 +114,18 @@ function zero(line) //補0用的
     }
     return line;
 }
-function pass2(line)
+function pass1(line)
 {
 	if(line[0]!= '(')
-	console.log(line + "  ")
+	c.log(line + "  ")
     writeword=word +'.hack';
-    if(line[0]=='@') //A指令
-    {   
-        line=line.substring(1); //line取@後面的字
+    if(line.indexOf('@')!=-1)//判斷line裡面是否有 = @
+	{   
+        line=line.substring(1); 
         if(line.match(/^\d+$/))
-        {
+        {   var line=line.split('@');
             line=line - 0; //line轉數字
-            var binary = zero(line); //用zero function 下去補0
+            var binary = add0(line); //補0
             c.log(binary);
         }
         else
@@ -142,38 +136,39 @@ function pass2(line)
                 symnum++;
             }
             var num=symTable[line];
-            binary=zero(num);
+            binary=add0(num);
             c.log(binary);
         }
-    } //A指令完成!!
+    }
     else  //C指令
     {
         if(line.indexOf('=')!=-1) //判斷line裡面是否有 = 
         {
             var line=line.split('=');
             var binary= 0b111<<13|ctable[line[1]]<<6|dtable[line[0]]<<3|0b000;
-            binary=zero(binary);
-            console.log(binary);
+            binary=add0(binary);
+            c.log(binary);
         }
-        else if(line.indexOf(';')!=-1)
+        else if(line.indexOf(';')!=-1)//判斷line裡面是否有 ;
         {
             var line=line.split(';');
             var binary= 0b111<<13|ctable[line[0]]<<6|0b000<<3|jtable[line[1]];
-            binary=zero(binary);
-            console.log(binary);
+            binary=add0(binary);
+            c.log(binary);
         }
     }
     if(line[0]!='(')
-    fs.appendFileSync(writeword,binary +'\n');
+    fs.appendFileSync(writeword,binary +'\r\n');
 }
-function pass1(line)
+function pass2(line)
 {
     if(line[0]=='(')
     {
         line.match(/^\(([^\)]+)\)$/);
         var word=RegExp.$1;
         symTable[word]=symloaction;
-    }
+    
+}
     else
     symloaction++;   
 }
