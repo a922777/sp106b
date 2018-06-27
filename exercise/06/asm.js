@@ -104,7 +104,7 @@ function parser()
     }
 }
 
-function add0(line)
+function add0(line) //補0給A指令用
 {
     line= line.toString(2); //轉2進位
     var len=line.length;
