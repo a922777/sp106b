@@ -117,7 +117,7 @@ function add0(line) //補0給A指令用
 function pass1(line) //A指令
 {
     if(line[0]!= '(')
-    c.log(line + "  ")
+    c.log(line)
     writeword=word +'.hack';
     if(line.indexOf('@')!=-1)//判斷line裡面是否有 = @
 	{   
