@@ -114,7 +114,7 @@ function add0(line)
     }
     return line;
 }
-function pass1(line)
+function pass1(line) //A指令
 {
 	if(line[0]!= '(')
 	c.log(line + "  ")
