@@ -167,8 +167,7 @@ function pass2(line)
         line.match(/^\(([^\)]+)\)$/);
         var word=RegExp.$1;
         symTable[word]=symloaction;
-    
-}
+    }
     else
     symloaction++;   
 }
