@@ -125,8 +125,8 @@ function pass1(line)
         if(line.match(/^\d+$/))
         {   var line=line.split('@');
             line=line - 0; //line轉數字
-            var binary = add0(line); //補0
-            c.log(binary);
+            var answer10 = add0(line); //補0
+            c.log(answer10);
         }
         else
         {
@@ -136,8 +136,8 @@ function pass1(line)
                 symnum++;
             }
             var num=symTable[line];
-            binary=add0(num);
-            c.log(binary);
+            answer10=add0(num);//補0
+            c.log(answer10);
         }
     }
     else  //C指令
@@ -145,20 +145,20 @@ function pass1(line)
         if(line.indexOf('=')!=-1) //判斷line裡面是否有 = 
         {
             var line=line.split('=');
-            var binary= 0b111<<13|ctable[line[1]]<<6|dtable[line[0]]<<3|0b000;
-            binary=add0(binary);
-            c.log(binary);
+            var answer10= 0b111<<13|ctable[line[1]]<<6|dtable[line[0]]<<3|0b000;
+            answer2=answer10.toString(2);
+            c.log(answer2);
         }
         else if(line.indexOf(';')!=-1)//判斷line裡面是否有 ;
         {
             var line=line.split(';');
-            var binary= 0b111<<13|ctable[line[0]]<<6|0b000<<3|jtable[line[1]];
-            binary=add0(binary);
-            c.log(binary);
+            var answer10= 0b111<<13|ctable[line[0]]<<6|0b000<<3|jtable[line[1]];
+            answer2=answer10.toString(2);
+            c.log(answer2);
         }
     }
     if(line[0]!='(')
-    fs.appendFileSync(writeword,binary +'\r\n');
+    fs.appendFileSync(writeword,answer10 +'\r\n');
 }
 function pass2(line)
 {
